@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}Register Staff - Attendance System{% endblock %}
+
+{% block content %}
+
+<!-- Flash Messages -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="flash-messages">
+            {% for category, message in messages %}
+                <div class="flash {{ category }}">
+                    <span>{{ message }}</span>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+
+<div class="container">
+    <div class="page-header">
+        <h1>👤 Register New Staff</h1>
+        <p>Add a new staff member to the attendance system</p>
+    </div>
+
+    <div class="card form-container">
+        <form method="POST" action="/register" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="staffname">Full Name</label>
+                <input type="text" id="staffname" name="staffname" placeholder="Enter staff name" required autofocus>
+            </div>
+
+            <div class="form-group">
+                <label for="staff_id">Staff ID</label>
+                <input type="text" id="staff_id" name="staff_id" placeholder="Enter unique staff ID (e.g., EMP001)" required>
+            </div>
+
+            <div class="form-group">
+                <label for="photo">Photo</label>
+                <input type="file" id="photo" name="photo" accept="image/*" required>
+                <small style="display: block; margin-top: 8px; color: var(--text-secondary);">
+                    📸 Please upload a clear, well-lit photo facing the camera
+                </small>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn-success" style="width: 100%;">Register Staff</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="card" style="margin-top: 20px; background: #eff6ff; border-left: 4px solid #2563eb;">
+        <h3 style="margin-bottom: 10px;">📌 Photo Guidelines:</h3>
+        <ul style="margin-left: 20px; color: var(--text-secondary);">
+            <li>Use good lighting (avoid shadows on face)</li>
+            <li>Look directly at the camera</li>
+            <li>Remove glasses if possible</li>
+            <li>Use a plain background</li>
+            <li>Ensure the face is clearly visible</li>
+        </ul>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/register.js') }}"></script>
+
+{% endblock %}

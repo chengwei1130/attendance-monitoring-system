@@ -1,0 +1,9 @@
+temp_frames/*
+!temp_frames/.gitkeep
+.env
+venv
+static/uploads/*
+!static/uploads/.gitkeep
+__pycache__
+*.pyc
+scope.txt

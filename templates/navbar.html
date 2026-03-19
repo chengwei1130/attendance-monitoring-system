@@ -1,0 +1,15 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<nav>
+    <ul class="navbar">
+        <li>
+            <a href="{{ url_for('dashboard') }}" title="Return to Dashboard">
+                <img src="{{ url_for('static', filename='img/return.png') }}" alt="Home" width="40px">
+            </a>
+        </li>
+        <li><a href="{{ url_for('attendance') }}">📸 Live Attendance</a></li>
+        <li><a href="{{ url_for('record') }}">📋 Records</a></li>
+        <li><a href="{{ url_for('register') }}">👤 Register Staff</a></li>
+        <li><a href="{{ url_for('staff_list') }}">👥 All Staff</a></li>
+        <li class="logout"><a href="{{ url_for('logout') }}">Logout</a></li>
+    </ul>
+</nav>

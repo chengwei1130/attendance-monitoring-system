@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Attendance System{% endblock %}
+
+{% block content %}
+
+<!-- Flash Messages -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="flash-messages">
+            {% for category, message in messages %}
+                <div class="flash {{ category }}">
+                    <span>{{ message }}</span>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+
+<div class="container">
+    <div class="page-header">
+        <h1>📊 Dashboard</h1>
+        <p>Welcome to the Attendance Monitoring System</p>
+    </div>
+
+    <div class="dashboard-grid">
+        <a href="{{ url_for('attendance') }}" style="text-decoration: none; color: inherit;">
+            <div class="dashboard-card">
+                <div style="font-size: 3rem; margin-bottom: 15px;">📸</div>
+                <h3>Live Attendance</h3>
+                <p>Monitor real-time attendance with facial recognition</p>
+            </div>
+        </a>
+
+        <a href="{{ url_for('register') }}" style="text-decoration: none; color: inherit;">
+            <div class="dashboard-card">
+                <div style="font-size: 3rem; margin-bottom: 15px;">👤</div>
+                <h3>Register Staff</h3>
+                <p>Add new staff members to the system</p>
+            </div>
+        </a>
+
+        <a href="{{ url_for('record') }}" style="text-decoration: none; color: inherit;">
+            <div class="dashboard-card">
+                <div style="font-size: 3rem; margin-bottom: 15px;">📋</div>
+                <h3>View Records</h3>
+                <p>Check attendance history and reports</p>
+            </div>
+        </a>
+        
+        <a href="{{ url_for('staff_list') }}" style="text-decoration: none; color: inherit;">
+            <div class="dashboard-card">
+                <div style="font-size: 3rem; margin-bottom: 15px;">👥</div>
+                <h3>View All Staff</h3>
+                <p>See all registered staff members and their details</p>
+            </div>
+        </a>        
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+
+{% endblock %}

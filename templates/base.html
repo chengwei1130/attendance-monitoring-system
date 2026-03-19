@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Attendance Monitoring System{% endblock %}</title>
+
+    <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    {% if session.get('logged_in') and request.endpoint != 'login' %}
+        {% include 'navbar.html' %}
+    {% endif %}
+
+    {% block content %}{% endblock %}
+
+</body>
+</html>

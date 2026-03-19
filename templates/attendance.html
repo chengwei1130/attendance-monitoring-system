@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Live Attendance - Attendance System{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="page-header">
+        <h1>📸 Live Attendance Monitoring</h1>
+        <p>Face recognition will automatically mark check-in and check-out</p>
+    </div>
+
+    <div class="card text-center">
+        <div class="video-container">
+            <img src="{{ url_for('video_feed') }}" 
+                id="camera-feeds" 
+                alt="Live Camera Feed"
+                onerror="this.style.border='3px solid #ef4444'">
+        </div>
+
+        <div style="margin-top: 20px; padding: 15px; background: #eff6ff; border-radius: 8px; display: inline-block;">
+            <h4 style="margin-bottom: 8px; color: #1e40af;">ℹ️ How it works:</h4>
+            <p style="color: #475569; font-size: 0.95rem; margin: 5px 0;">
+                <strong>First detection:</strong> Check-in is recorded
+            </p>
+            <p style="color: #475569; font-size: 0.95rem; margin: 5px 0;">
+                <strong>Second detection (20+ seconds later):</strong> Check-out is recorded
+            </p>
+        </div>
+
+        <div style="margin-top: 20px;">
+            <span class="badge badge-success">● System Active</span>
+            <span class="badge" style="background: #e0e7ff; color: #3730a3; margin-left: 10px;">
+                Checking every 6 seconds
+            </span>
+        </div>
+    </div>
+
+    <div class="card" style="margin-top: 20px; background: #fef3c7; border-left: 4px solid #f59e0b;">
+        <h3 style="margin-bottom: 10px;">⚠️ Important Notes:</h3>
+        <ul style="margin-left: 20px; color: var(--text-secondary);">
+            <li>Stand in front of the camera with good lighting</li>
+            <li>Face the camera directly for best recognition</li>
+            <li>Wait at least 20 seconds between check-in and check-out</li>
+            <li>Only one person should be in frame at a time</li>
+        </ul>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/attendance.js') }}"></script>
+
+{% endblock %}
