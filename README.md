@@ -36,6 +36,6 @@ A Flask-based attendance system using face recognition.
 6. Run the app:
    python app.py
 
-#Author
+## Author
 
 Loh Cheng Wei
