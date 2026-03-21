@@ -1,4 +1,3 @@
-
 setTimeout(() => {
     const flashes = document.querySelectorAll('.flash');
     flashes.forEach(flash => {
