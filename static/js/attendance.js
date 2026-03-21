@@ -1,4 +1,3 @@
-
 const img = document.getElementById('camera-feeds');
 
 img.addEventListener('load', function() {
