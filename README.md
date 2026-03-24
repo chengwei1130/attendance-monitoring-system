@@ -30,9 +30,9 @@ A Flask-based attendance system using face recognition.
 4. Setup database:
    Install MySQL WorkBench
    Create a new connection (Port: 3306)
-   Import and run:
-      database/AMS_schema.sql
-      database/sample_data.sql
+   Import and run:/n
+      database/AMS_schema.sql/n
+      database/sample_data.sql/n
 
 6. Create .env file (based on .env.example)
    Change password and secret_key
