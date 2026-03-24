@@ -30,12 +30,17 @@ A Flask-based attendance system using face recognition.
 4. Create .env file (based on .env.example)
    Change password and secret_key
 
-5. Run the app:
-   python app.py
 
 ## Setup database
 
+1. Install MySQL WorkBench
+   
+2. Create a new connection with port 3306
+   
+3. Import and run create_table.sql, insert_admin.sql
 
+4. run the code
+   python app.py
 
 ## Author
 
