@@ -39,7 +39,7 @@ A Flask-based attendance system using face recognition.
    
 3. Import and run create_table.sql, insert_admin.sql
 
-4. run the code
+4. Run the code - 
    python app.py
 
 ## Author
