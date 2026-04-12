@@ -18,3 +18,32 @@ setTimeout(() => {
         setTimeout(() => flash.remove(), 300);
     });
 }, 5000);
+
+
+const employmentType = document.getElementById("employment_type");
+const salaryGroup = document.getElementById("salary-group");
+const rateGroup = document.getElementById("rate-group");
+
+function toggleFields() {
+    const type = employmentType.value;
+
+    if (type === "full_time") {
+        salaryGroup.style.display = "block";
+        rateGroup.style.display = "none";
+        document.getElementById("hourly_rate").value = "";
+    } else if (type === "part_time") {
+        salaryGroup.style.display = "none";
+        rateGroup.style.display = "block";
+        document.getElementById("monthly_salary").value = "";
+
+    } else {
+        salaryGroup.style.display = "block";
+        rateGroup.style.display = "block";
+    }
+}
+
+// Run when dropdown changes
+employmentType.addEventListener("change", toggleFields);
+
+// Run once on page load (important!)
+window.addEventListener("load", toggleFields);

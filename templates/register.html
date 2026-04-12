@@ -34,7 +34,29 @@
                 <label for="staff_id">Staff ID</label>
                 <input type="text" id="staff_id" name="staff_id" placeholder="Enter unique staff ID (e.g., EMP001)" required>
             </div>
+            <div class="form-group">
+                <label for="department">Department</label>
+                <input type="text" id="department" name="department" placeholder="Enter department (e.g., IT, HR)" required>
+            </div>
 
+            <div class="form-group">
+                <label for="employment_type">Employment Type</label>
+                <select id="employment_type" name="employment_type" required>
+                    <option value="">Select type</option>
+                    <option value="full_time">Full Time</option>
+                    <option value="part_time">Part Time</option>
+                </select>
+            </div>
+
+            <div class="form-group" id="salary-group">
+                <label for="monthly_salary">Monthly Salary (Full Time)</label>
+                <input type="number" step="0.01" id="monthly_salary" name="monthly_salary" placeholder="Enter monthly salary">
+            </div>
+
+            <div class="form-group" id="rate-group">
+                <label for="hourly_rate">Hourly Rate (Part Time)</label>
+                <input type="number" step="0.01" id="hourly_rate" name="hourly_rate" placeholder="Enter hourly rate">
+            </div>
             <div class="form-group">
                 <label for="photo">Photo</label>
                 <input type="file" id="photo" name="photo" accept="image/*" required>

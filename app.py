@@ -57,34 +57,54 @@ def login_required(f):
 @app.route('/register', methods=['GET', 'POST'])
 @login_required
 def register():
-    """Staff registration page"""
     if request.method == 'POST':
         staffname = request.form.get('staffname', '').strip()
         staff_id = request.form.get('staff_id', '').strip()
+        department = request.form.get('department', '').strip()
+        employment_type = request.form.get('employment_type', '').strip()
+        monthly_salary = request.form.get('monthly_salary', '').strip()
+        hourly_rate = request.form.get('hourly_rate', '').strip()
         photo = request.files.get('photo')
 
-        # Validation
-        if not staffname or not staff_id:
-            flash('Staff name and ID are required', 'error')
+        if not staffname or not staff_id or not department or not employment_type:
+            flash('Staff name, ID, department and employment type are required', 'error')
             return render_template('register.html')
+
+        if employment_type not in ['full_time', 'part_time']:
+            flash('Invalid employment type', 'error')
+            return render_template('register.html')
+
+        if employment_type == 'full_time':
+            if not monthly_salary:
+                flash('Monthly salary is required for full-time staff', 'error')
+                return render_template('register.html')
+            hourly_rate = None
+            monthly_salary = float(monthly_salary)
+
+        elif employment_type == 'part_time':
+            if not hourly_rate:
+                flash('Hourly rate is required for part-time staff', 'error')
+                return render_template('register.html')
+            monthly_salary = None
+            hourly_rate = float(hourly_rate)
 
         if not photo or photo.filename == '':
             flash('Please upload a staff photo', 'error')
             return render_template('register.html')
 
-        # Save photo
         upload_dir = 'static/uploads'
         os.makedirs(upload_dir, exist_ok=True)
-        
-        # Use staff_id in filename to avoid conflicts
+
         file_ext = os.path.splitext(photo.filename)[1]
         photo_filename = f"{staff_id}{file_ext}"
         photo_path = os.path.join(upload_dir, photo_filename).replace("\\", "/")
         photo.save(photo_path)
 
-        # Insert into database
         try:
-            insert_staff(staffname, staff_id, photo_path)
+            insert_staff(
+                staffname, staff_id, department, employment_type,
+                monthly_salary, hourly_rate, photo_path
+            )
             flash(f'Staff {staffname} registered successfully!', 'success')
             return redirect(url_for('register'))
         except Exception as e:

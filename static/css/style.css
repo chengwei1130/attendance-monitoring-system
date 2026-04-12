@@ -528,3 +528,6 @@ button:hover, .btn:hover {
     color: #991b1b;
 }
 
+#salary-group, #rate-group {
+    transition: all 0.3s ease;
+}

@@ -29,12 +29,20 @@ def check_admin(admin_id, admin_pass):
 
 # ==================== STAFF FUNCTIONS ====================
 
-def insert_staff(staffname, staff_id, photo_path):
-    """Register a new staff member"""
+def insert_staff(staffname, staff_id, department, employment_type, monthly_salary, hourly_rate, photo_path):
     db = get_db()
     cursor = db.cursor()
-    sql = "INSERT INTO staff (staffname, staff_id, photo) VALUES (%s, %s, %s)"
-    cursor.execute(sql, (staffname, staff_id, photo_path))
+    sql = """
+        INSERT INTO staff (
+            staffname, staff_id, department, employment_type,
+            monthly_salary, hourly_rate, photo
+        )
+        VALUES (%s, %s, %s, %s, %s, %s, %s)
+    """
+    cursor.execute(sql, (
+        staffname, staff_id, department, employment_type,
+        monthly_salary, hourly_rate, photo_path
+    ))
     db.commit()
     cursor.close()
     db.close()
@@ -50,10 +58,14 @@ def get_all_staff():
     return result
 
 def get_staff_by_id(staff_id):
-    """Get one staff member by staff_id"""
     db = get_db()
     cursor = db.cursor(dictionary=True)
-    cursor.execute("SELECT staff_id, staffname, photo FROM staff WHERE staff_id = %s", (staff_id,))
+    cursor.execute("""
+        SELECT staff_id, staffname, department, employment_type,
+               monthly_salary, hourly_rate, photo
+        FROM staff
+        WHERE staff_id = %s
+    """, (staff_id,))
     result = cursor.fetchone()
     cursor.close()
     db.close()
@@ -148,11 +160,11 @@ def update_remark(record_id, remark):
     db.close()
 
 def get_all_staff_details():
-    """Retrieve all staff details for listing page"""
     db = get_db()
     cursor = db.cursor(dictionary=True)
     cursor.execute("""
-        SELECT staff_id, staffname, photo
+        SELECT staff_id, staffname, department, employment_type,
+               monthly_salary, hourly_rate, photo
         FROM staff
         ORDER BY staffname ASC
     """)
